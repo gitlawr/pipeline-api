@@ -16,6 +16,9 @@ type Interface interface {
 
 	PipelinesGetter
 	ActivitiesGetter
+	GitAccountsGetter
+	GitRepoCachesGetter
+	SCMSettingsGetter
 }
 
 type Client struct {
@@ -23,8 +26,11 @@ type Client struct {
 	restClient rest.Interface
 	starters   []controller.Starter
 
-	pipelineControllers map[string]PipelineController
-	activityControllers map[string]ActivityController
+	pipelineControllers     map[string]PipelineController
+	activityControllers     map[string]ActivityController
+	gitAccountControllers   map[string]GitAccountController
+	gitRepoCacheControllers map[string]GitRepoCacheController
+	scmSettingControllers   map[string]SCMSettingController
 }
 
 func NewForConfig(config rest.Config) (Interface, error) {
@@ -41,8 +47,11 @@ func NewForConfig(config rest.Config) (Interface, error) {
 	return &Client{
 		restClient: restClient,
 
-		pipelineControllers: map[string]PipelineController{},
-		activityControllers: map[string]ActivityController{},
+		pipelineControllers:     map[string]PipelineController{},
+		activityControllers:     map[string]ActivityController{},
+		gitAccountControllers:   map[string]GitAccountController{},
+		gitRepoCacheControllers: map[string]GitRepoCacheController{},
+		scmSettingControllers:   map[string]SCMSettingController{},
 	}, nil
 }
 
@@ -78,6 +87,45 @@ type ActivitiesGetter interface {
 func (c *Client) Activities(namespace string) ActivityInterface {
 	objectClient := clientbase.NewObjectClient(namespace, c.restClient, &ActivityResource, ActivityGroupVersionKind, activityFactory{})
 	return &activityClient{
+		ns:           namespace,
+		client:       c,
+		objectClient: objectClient,
+	}
+}
+
+type GitAccountsGetter interface {
+	GitAccounts(namespace string) GitAccountInterface
+}
+
+func (c *Client) GitAccounts(namespace string) GitAccountInterface {
+	objectClient := clientbase.NewObjectClient(namespace, c.restClient, &GitAccountResource, GitAccountGroupVersionKind, gitAccountFactory{})
+	return &gitAccountClient{
+		ns:           namespace,
+		client:       c,
+		objectClient: objectClient,
+	}
+}
+
+type GitRepoCachesGetter interface {
+	GitRepoCaches(namespace string) GitRepoCacheInterface
+}
+
+func (c *Client) GitRepoCaches(namespace string) GitRepoCacheInterface {
+	objectClient := clientbase.NewObjectClient(namespace, c.restClient, &GitRepoCacheResource, GitRepoCacheGroupVersionKind, gitRepoCacheFactory{})
+	return &gitRepoCacheClient{
+		ns:           namespace,
+		client:       c,
+		objectClient: objectClient,
+	}
+}
+
+type SCMSettingsGetter interface {
+	SCMSettings(namespace string) SCMSettingInterface
+}
+
+func (c *Client) SCMSettings(namespace string) SCMSettingInterface {
+	objectClient := clientbase.NewObjectClient(namespace, c.restClient, &SCMSettingResource, SCMSettingGroupVersionKind, scmSettingFactory{})
+	return &scmSettingClient{
 		ns:           namespace,
 		client:       c,
 		objectClient: objectClient,

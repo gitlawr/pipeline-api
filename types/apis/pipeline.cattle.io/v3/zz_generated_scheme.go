@@ -37,6 +37,12 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&PipelineList{},
 		&Activity{},
 		&ActivityList{},
+		&GitAccount{},
+		&GitAccountList{},
+		&GitRepoCache{},
+		&GitRepoCacheList{},
+		&SCMSetting{},
+		&SCMSettingList{},
 	)
 	return nil
 }

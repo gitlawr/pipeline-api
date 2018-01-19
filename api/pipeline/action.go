@@ -1,17 +1,22 @@
 package pipeline
 
 import (
-
-	"github.com/rancher/norman/httperror"
 	"github.com/rancher/norman/types"
 	"github.com/sirupsen/logrus"
 )
+
+func Formatter(apiContext *types.APIContext, resource *types.RawResource) {
+	resource.Actions["run"] = apiContext.URLBuilder.Action("run", resource)
+	resource.Actions["update"] = apiContext.URLBuilder.Action("update", resource)
+	resource.Actions["activate"] = apiContext.URLBuilder.Action("activate", resource)
+	resource.Actions["deactivate"] = apiContext.URLBuilder.Action("deactivate", resource)
+	resource.Actions["remove"] = apiContext.URLBuilder.Action("remove", resource)
+	resource.Actions["export"] = apiContext.URLBuilder.Action("export", resource)
+}
+
 func PipelineActionHandler(actionName string, action *types.Action, apiContext *types.APIContext) error {
-	logrus.Info("do run pipeline")
-	if actionName != "run" {
-		return httperror.NewAPIError(httperror.NotFound, "not found")
-	}
-	//TODO RUN
+	logrus.Infof("do pipeline action:%s",actionName)
+	//TODO Implement Actions
 	/*
 	store := apiContext.Schema.Store
 
@@ -27,4 +32,8 @@ func PipelineActionHandler(actionName string, action *types.Action, apiContext *
 	}
 	*/
 	return nil
+}
+
+func RunPipeline(){
+
 }

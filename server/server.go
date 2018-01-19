@@ -5,30 +5,33 @@ import (
 	"net/http"
 	"github.com/rancher/pipeline-api/types/config"
 	normanapi "github.com/rancher/norman/api"
-	"github.com/rancher/norman/types"
-	"github.com/rancher/norman/store/crd"
-	"github.com/rancher/pipeline-api/types/apis/pipeline.cattle.io/v3/schema"
-	"github.com/sirupsen/logrus"
+	//"github.com/rancher/norman/types"
+	//"github.com/rancher/norman/store/crd"
+	//"github.com/rancher/pipeline-api/types/apis/pipeline.cattle.io/v3/schema"
+	//"github.com/sirupsen/logrus"
 	"github.com/rancher/pipeline-api/controller"
+	"github.com/rancher/pipeline-api/api/setup"
 )
 
 func New(ctx context.Context, pipeline *config.PipelineContext) (http.Handler, error) {
 
-	store, err := crd.NewCRDStoreFromConfig(pipeline.RESTConfig)
-	if err != nil {
-		return nil,err
-	}
+	setup.Schemas(ctx,pipeline)
+	/*
+		store, err := crd.NewCRDStoreFromConfig(pipeline.RESTConfig)
+		if err != nil {
+			return nil,err
+		}
 
-	var crdSchemas []*types.Schema
+		var crdSchemas []*types.Schema
 
-	for _, schema := range pipeline.Schemas.SchemasForVersion(schema.Version) {
-		crdSchemas = append(crdSchemas, schema)
-	}
+		for _, schema := range pipeline.Schemas.SchemasForVersion(schema.Version) {
+			crdSchemas = append(crdSchemas, schema)
+		}
 
-	if err := store.AddSchemas(ctx, crdSchemas...); err != nil {
-		logrus.Error(err)
-	}
-
+		if err := store.AddSchemas(ctx, crdSchemas...); err != nil {
+			logrus.Error(err)
+		}
+	*/
 
 	server := normanapi.NewAPIServer()
 	if err := server.AddSchemas(pipeline.Schemas); err != nil {

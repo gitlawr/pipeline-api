@@ -10,17 +10,14 @@ const (
 	PipelineFieldCreated              = "created"
 	PipelineFieldCreatorID            = "creatorId"
 	PipelineFieldCronTrigger          = "cronTrigger"
-	PipelineFieldIsActivate           = "isActivate"
-	PipelineFieldKeepWorkspace        = "keepWorkspace"
+	PipelineFieldId                   = "id"
 	PipelineFieldLabels               = "labels"
 	PipelineFieldName                 = "name"
 	PipelineFieldOwnerReferences      = "ownerReferences"
-	PipelineFieldParameters           = "parameters"
 	PipelineFieldRemoved              = "removed"
 	PipelineFieldStages               = "stages"
 	PipelineFieldState                = "state"
 	PipelineFieldStatus               = "status"
-	PipelineFieldTemplates            = "templates"
 	PipelineFieldTransitioning        = "transitioning"
 	PipelineFieldTransitioningMessage = "transitioningMessage"
 	PipelineFieldUuid                 = "uuid"
@@ -32,17 +29,14 @@ type Pipeline struct {
 	Created              string            `json:"created,omitempty"`
 	CreatorID            string            `json:"creatorId,omitempty"`
 	CronTrigger          *CronTrigger      `json:"cronTrigger,omitempty"`
-	IsActivate           *bool             `json:"isActivate,omitempty"`
-	KeepWorkspace        *bool             `json:"keepWorkspace,omitempty"`
+	Id                   string            `json:"id,omitempty"`
 	Labels               map[string]string `json:"labels,omitempty"`
 	Name                 string            `json:"name,omitempty"`
 	OwnerReferences      []OwnerReference  `json:"ownerReferences,omitempty"`
-	Parameters           []string          `json:"parameters,omitempty"`
 	Removed              string            `json:"removed,omitempty"`
 	Stages               []Stage           `json:"stages,omitempty"`
 	State                string            `json:"state,omitempty"`
 	Status               *PipelineStatus   `json:"status,omitempty"`
-	Templates            map[string]string `json:"templates,omitempty"`
 	Transitioning        string            `json:"transitioning,omitempty"`
 	TransitioningMessage string            `json:"transitioningMessage,omitempty"`
 	Uuid                 string            `json:"uuid,omitempty"`

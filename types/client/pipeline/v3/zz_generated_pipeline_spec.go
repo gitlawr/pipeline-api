@@ -1,20 +1,14 @@
 package client
 
 const (
-	PipelineSpecType               = "pipelineSpec"
-	PipelineSpecFieldCronTrigger   = "cronTrigger"
-	PipelineSpecFieldIsActivate    = "isActivate"
-	PipelineSpecFieldKeepWorkspace = "keepWorkspace"
-	PipelineSpecFieldParameters    = "parameters"
-	PipelineSpecFieldStages        = "stages"
-	PipelineSpecFieldTemplates     = "templates"
+	PipelineSpecType             = "pipelineSpec"
+	PipelineSpecFieldCronTrigger = "cronTrigger"
+	PipelineSpecFieldDisplayName = "displayName"
+	PipelineSpecFieldStages      = "stages"
 )
 
 type PipelineSpec struct {
-	CronTrigger   *CronTrigger      `json:"cronTrigger,omitempty"`
-	IsActivate    *bool             `json:"isActivate,omitempty"`
-	KeepWorkspace *bool             `json:"keepWorkspace,omitempty"`
-	Parameters    []string          `json:"parameters,omitempty"`
-	Stages        []Stage           `json:"stages,omitempty"`
-	Templates     map[string]string `json:"templates,omitempty"`
+	CronTrigger *CronTrigger `json:"cronTrigger,omitempty"`
+	DisplayName string       `json:"displayName,omitempty"`
+	Stages      []Stage      `json:"stages,omitempty"`
 }

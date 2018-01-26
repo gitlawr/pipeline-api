@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/rancher/pipeline-api/api/pipeline"
-	"github.com/rancher/pipeline-api/api/activity"
+	"github.com/rancher/pipeline-api/api/pipeline-hostory"
 	"github.com/rancher/pipeline-api/api/git-account"
 	"github.com/rancher/pipeline-api/api/scm-setting"
 	"github.com/rancher/pipeline-api/store/scoped"
@@ -27,9 +27,7 @@ func Schemas(ctx context.Context, pipeline *config.PipelineContext) error {
 	schemas := pipeline.Schemas
 	subscribe.Register(&builtin.Version, schemas)
 	Pipeline(schemas)
-	Activity(schemas)
-	GitAccount(schemas)
-	SCMSetting(schemas)
+	PipelineHistory(schemas)
 	crdStore, err := crd.NewCRDStoreFromConfig(pipeline.RESTConfig)
 	if err != nil {
 		return err
@@ -92,8 +90,8 @@ func Pipeline(schemas *types.Schemas) {
 	schema.ActionHandler = pipeline.PipelineActionHandler
 }
 
-func Activity(schemas *types.Schemas) {
-	schema := schemas.Schema(&pipelineschema.Version, client.ActivityType)
+func PipelineHistory(schemas *types.Schemas) {
+	schema := schemas.Schema(&pipelineschema.Version, client.PipelineHistoryType)
 	schema.ResourceActions = map[string]types.Action{
 		"update":     {},
 		"remove":     {},
@@ -102,29 +100,6 @@ func Activity(schemas *types.Schemas) {
 		"rerun": {},
 		"stop":     {},
 	}
-	schema.Formatter = activity.Formatter
-	schema.ActionHandler = activity.ActivityActionHandler
-}
-
-func GitAccount(schemas *types.Schemas) {
-	schema := schemas.Schema(&pipelineschema.Version, client.GitAccountType)
-	schema.ResourceActions = map[string]types.Action{
-		"share": {},
-		"unshare":     {},
-		"remove":   {},
-		"refreshrepo": {},
-	}
-	schema.Formatter = git_account.Formatter
-	schema.ActionHandler = git_account.GitAccountActionHandler
-}
-
-func SCMSetting(schemas *types.Schemas) {
-	schema := schemas.Schema(&pipelineschema.Version, client.SCMSettingType)
-	schema.ResourceActions = map[string]types.Action{
-		"update":     {},
-		"remove":     {},
-		"oauth":     {},
-	}
-	schema.Formatter = scm_setting.Formatter
-	schema.ActionHandler = scm_setting.SCMSettingActionHandler
+	schema.Formatter = pipeline_hostory.Formatter
+	schema.ActionHandler = pipeline_hostory.ActivityActionHandler
 }

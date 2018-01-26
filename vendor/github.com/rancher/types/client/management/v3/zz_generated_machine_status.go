@@ -9,7 +9,10 @@ const (
 	MachineStatusFieldIPAddress       = "ipAddress"
 	MachineStatusFieldInfo            = "info"
 	MachineStatusFieldLimits          = "limits"
+	MachineStatusFieldNodeAnnotations = "nodeAnnotations"
+	MachineStatusFieldNodeLabels      = "nodeLabels"
 	MachineStatusFieldNodeName        = "nodeName"
+	MachineStatusFieldNodeTaints      = "nodeTaints"
 	MachineStatusFieldRequested       = "requested"
 	MachineStatusFieldSSHUser         = "sshUser"
 	MachineStatusFieldVolumesAttached = "volumesAttached"
@@ -24,7 +27,10 @@ type MachineStatus struct {
 	IPAddress       string                    `json:"ipAddress,omitempty"`
 	Info            *NodeInfo                 `json:"info,omitempty"`
 	Limits          map[string]string         `json:"limits,omitempty"`
+	NodeAnnotations map[string]string         `json:"nodeAnnotations,omitempty"`
+	NodeLabels      map[string]string         `json:"nodeLabels,omitempty"`
 	NodeName        string                    `json:"nodeName,omitempty"`
+	NodeTaints      []Taint                   `json:"nodeTaints,omitempty"`
 	Requested       map[string]string         `json:"requested,omitempty"`
 	SSHUser         string                    `json:"sshUser,omitempty"`
 	VolumesAttached map[string]AttachedVolume `json:"volumesAttached,omitempty"`

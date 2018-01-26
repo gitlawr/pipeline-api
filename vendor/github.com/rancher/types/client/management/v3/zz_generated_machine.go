@@ -13,17 +13,20 @@ const (
 	MachineFieldConditions           = "conditions"
 	MachineFieldCreated              = "created"
 	MachineFieldCreatorID            = "creatorId"
+	MachineFieldCustomConfig         = "customConfig"
 	MachineFieldDescription          = "description"
 	MachineFieldHostname             = "hostname"
 	MachineFieldIPAddress            = "ipAddress"
-	MachineFieldId                   = "id"
 	MachineFieldInfo                 = "info"
 	MachineFieldLabels               = "labels"
 	MachineFieldLimits               = "limits"
 	MachineFieldMachineTemplateId    = "machineTemplateId"
 	MachineFieldName                 = "name"
 	MachineFieldNamespaceId          = "namespaceId"
+	MachineFieldNodeAnnotations      = "nodeAnnotations"
+	MachineFieldNodeLabels           = "nodeLabels"
 	MachineFieldNodeName             = "nodeName"
+	MachineFieldNodeTaints           = "nodeTaints"
 	MachineFieldOwnerReferences      = "ownerReferences"
 	MachineFieldPodCidr              = "podCidr"
 	MachineFieldProviderId           = "providerId"
@@ -37,6 +40,7 @@ const (
 	MachineFieldTransitioning        = "transitioning"
 	MachineFieldTransitioningMessage = "transitioningMessage"
 	MachineFieldUnschedulable        = "unschedulable"
+	MachineFieldUseInternalIPAddress = "useInternalIpAddress"
 	MachineFieldUuid                 = "uuid"
 	MachineFieldVolumesAttached      = "volumesAttached"
 	MachineFieldVolumesInUse         = "volumesInUse"
@@ -51,17 +55,20 @@ type Machine struct {
 	Conditions           []MachineCondition        `json:"conditions,omitempty"`
 	Created              string                    `json:"created,omitempty"`
 	CreatorID            string                    `json:"creatorId,omitempty"`
+	CustomConfig         *CustomConfig             `json:"customConfig,omitempty"`
 	Description          string                    `json:"description,omitempty"`
 	Hostname             string                    `json:"hostname,omitempty"`
 	IPAddress            string                    `json:"ipAddress,omitempty"`
-	Id                   string                    `json:"id,omitempty"`
 	Info                 *NodeInfo                 `json:"info,omitempty"`
 	Labels               map[string]string         `json:"labels,omitempty"`
 	Limits               map[string]string         `json:"limits,omitempty"`
 	MachineTemplateId    string                    `json:"machineTemplateId,omitempty"`
 	Name                 string                    `json:"name,omitempty"`
 	NamespaceId          string                    `json:"namespaceId,omitempty"`
+	NodeAnnotations      map[string]string         `json:"nodeAnnotations,omitempty"`
+	NodeLabels           map[string]string         `json:"nodeLabels,omitempty"`
 	NodeName             string                    `json:"nodeName,omitempty"`
+	NodeTaints           []Taint                   `json:"nodeTaints,omitempty"`
 	OwnerReferences      []OwnerReference          `json:"ownerReferences,omitempty"`
 	PodCidr              string                    `json:"podCidr,omitempty"`
 	ProviderId           string                    `json:"providerId,omitempty"`
@@ -75,6 +82,7 @@ type Machine struct {
 	Transitioning        string                    `json:"transitioning,omitempty"`
 	TransitioningMessage string                    `json:"transitioningMessage,omitempty"`
 	Unschedulable        *bool                     `json:"unschedulable,omitempty"`
+	UseInternalIPAddress *bool                     `json:"useInternalIpAddress,omitempty"`
 	Uuid                 string                    `json:"uuid,omitempty"`
 	VolumesAttached      map[string]AttachedVolume `json:"volumesAttached,omitempty"`
 	VolumesInUse         []string                  `json:"volumesInUse,omitempty"`

@@ -9,7 +9,7 @@ const (
 	UserFieldAnnotations        = "annotations"
 	UserFieldCreated            = "created"
 	UserFieldCreatorID          = "creatorId"
-	UserFieldId                 = "id"
+	UserFieldDescription        = "description"
 	UserFieldLabels             = "labels"
 	UserFieldMe                 = "me"
 	UserFieldMustChangePassword = "mustChangePassword"
@@ -18,7 +18,7 @@ const (
 	UserFieldPassword           = "password"
 	UserFieldPrincipalIDs       = "principalIds"
 	UserFieldRemoved            = "removed"
-	UserFieldUserName           = "userName"
+	UserFieldUsername           = "username"
 	UserFieldUuid               = "uuid"
 )
 
@@ -27,7 +27,7 @@ type User struct {
 	Annotations        map[string]string `json:"annotations,omitempty"`
 	Created            string            `json:"created,omitempty"`
 	CreatorID          string            `json:"creatorId,omitempty"`
-	Id                 string            `json:"id,omitempty"`
+	Description        string            `json:"description,omitempty"`
 	Labels             map[string]string `json:"labels,omitempty"`
 	Me                 *bool             `json:"me,omitempty"`
 	MustChangePassword *bool             `json:"mustChangePassword,omitempty"`
@@ -36,7 +36,7 @@ type User struct {
 	Password           string            `json:"password,omitempty"`
 	PrincipalIDs       []string          `json:"principalIds,omitempty"`
 	Removed            string            `json:"removed,omitempty"`
-	UserName           string            `json:"userName,omitempty"`
+	Username           string            `json:"username,omitempty"`
 	Uuid               string            `json:"uuid,omitempty"`
 }
 type UserCollection struct {
@@ -56,7 +56,7 @@ type UserOperations interface {
 	ByID(id string) (*User, error)
 	Delete(container *User) error
 
-	ActionChangepassword(*User, *ChangePasswordInput) (*User, error)
+	ActionSetpassword(*User, *SetPasswordInput) (*User, error)
 }
 
 func newUserClient(apiClient *Client) *UserClient {
@@ -104,11 +104,11 @@ func (c *UserClient) Delete(container *User) error {
 	return c.apiClient.Ops.DoResourceDelete(UserType, &container.Resource)
 }
 
-func (c *UserClient) ActionChangepassword(resource *User, input *ChangePasswordInput) (*User, error) {
+func (c *UserClient) ActionSetpassword(resource *User, input *SetPasswordInput) (*User, error) {
 
 	resp := &User{}
 
-	err := c.apiClient.Ops.DoAction(UserType, "changepassword", &resource.Resource, input, resp)
+	err := c.apiClient.Ops.DoAction(UserType, "setpassword", &resource.Resource, input, resp)
 
 	return resp, err
 }

@@ -10,12 +10,13 @@ import (
 	//"github.com/rancher/pipeline-api/types/apis/pipeline.cattle.io/v3/schema"
 	//"github.com/sirupsen/logrus"
 	"github.com/rancher/pipeline-api/controller"
-	"github.com/rancher/pipeline-api/api/setup"
+	"github.com/rancher/pipeline-api/api"
 )
 
 func New(ctx context.Context, pipeline *config.PipelineContext) (http.Handler, error) {
 
-	setup.Schemas(ctx,pipeline)
+	api.Schemas(ctx,pipeline)
+	api.SetupProvider()
 	/*
 		store, err := crd.NewCRDStoreFromConfig(pipeline.RESTConfig)
 		if err != nil {

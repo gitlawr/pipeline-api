@@ -11,10 +11,12 @@ type Activity struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// Specification of the desired behavior of the the cluster. More info:
 	// https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#spec-and-status
-	Spec ActivitySpec `json:"spec"`
+	//###Spec ActivitySpec `json:"spec"`
 	// Most recent observed status of the cluster. More info:
 	// https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#spec-and-status
-	Status ActivityStatus `json:"status"`
+	//###Status ActivityStatus `json:"status"`
+	ActivitySpec
+	ActivityStatus
 }
 
 type ActivityStatus struct {
@@ -22,6 +24,7 @@ type ActivityStatus struct {
 }
 
 type ActivitySpec struct {
+	Id              string            `json:"id,omitempty"`
 	Pipeline        Pipeline          `json:"pipelineSource,omitempty"`
 	PipelineName    string            `json:"pipelineName,omitempty"`
 	PipelineVersion string            `json:"pipelineVersion,omitempty"`
@@ -35,6 +38,7 @@ type ActivitySpec struct {
 	ActivityStages  []ActivityStage   `json:"activity_stages,omitempty"`
 	EnvVars         map[string]string `json:"envVars,omitempty"`
 	TriggerType     string            `json:"triggerType,omitempty"`
+	Status          string            `json:"status,omitempty"`
 }
 
 type ActivityStage struct {

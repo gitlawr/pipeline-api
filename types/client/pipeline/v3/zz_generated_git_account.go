@@ -5,49 +5,43 @@ import (
 )
 
 const (
-	GitAccountType                      = "gitAccount"
-	GitAccountFieldAccessToken          = "accessToken"
-	GitAccountFieldAccountType          = "accountType"
-	GitAccountFieldAnnotations          = "annotations"
-	GitAccountFieldAvatarURL            = "avatar_url"
-	GitAccountFieldCreated              = "created"
-	GitAccountFieldCreatorID            = "creatorId"
-	GitAccountFieldHTMLURL              = "html_url"
-	GitAccountFieldLabels               = "labels"
-	GitAccountFieldLogin                = "login"
-	GitAccountFieldName                 = "name"
-	GitAccountFieldOwnerReferences      = "ownerReferences"
-	GitAccountFieldPrivate              = "private"
-	GitAccountFieldRancherUserID        = "rancherUserId"
-	GitAccountFieldRemoved              = "removed"
-	GitAccountFieldState                = "state"
-	GitAccountFieldStatus               = "status"
-	GitAccountFieldTransitioning        = "transitioning"
-	GitAccountFieldTransitioningMessage = "transitioningMessage"
-	GitAccountFieldUuid                 = "uuid"
+	GitAccountType                 = "gitAccount"
+	GitAccountFieldAccessToken     = "accessToken"
+	GitAccountFieldAccountType     = "accountType"
+	GitAccountFieldAnnotations     = "annotations"
+	GitAccountFieldAvatarURL       = "avatar_url"
+	GitAccountFieldCreated         = "created"
+	GitAccountFieldCreatorID       = "creatorId"
+	GitAccountFieldHTMLURL         = "html_url"
+	GitAccountFieldId              = "id"
+	GitAccountFieldLabels          = "labels"
+	GitAccountFieldLogin           = "login"
+	GitAccountFieldName            = "name"
+	GitAccountFieldOwnerReferences = "ownerReferences"
+	GitAccountFieldPrivate         = "private"
+	GitAccountFieldRancherUserID   = "rancherUserId"
+	GitAccountFieldRemoved         = "removed"
+	GitAccountFieldUuid            = "uuid"
 )
 
 type GitAccount struct {
 	types.Resource
-	AccessToken          string            `json:"accessToken,omitempty"`
-	AccountType          string            `json:"accountType,omitempty"`
-	Annotations          map[string]string `json:"annotations,omitempty"`
-	AvatarURL            string            `json:"avatar_url,omitempty"`
-	Created              string            `json:"created,omitempty"`
-	CreatorID            string            `json:"creatorId,omitempty"`
-	HTMLURL              string            `json:"html_url,omitempty"`
-	Labels               map[string]string `json:"labels,omitempty"`
-	Login                string            `json:"login,omitempty"`
-	Name                 string            `json:"name,omitempty"`
-	OwnerReferences      []OwnerReference  `json:"ownerReferences,omitempty"`
-	Private              *bool             `json:"private,omitempty"`
-	RancherUserID        string            `json:"rancherUserId,omitempty"`
-	Removed              string            `json:"removed,omitempty"`
-	State                string            `json:"state,omitempty"`
-	Status               *GitAccountStatus `json:"status,omitempty"`
-	Transitioning        string            `json:"transitioning,omitempty"`
-	TransitioningMessage string            `json:"transitioningMessage,omitempty"`
-	Uuid                 string            `json:"uuid,omitempty"`
+	AccessToken     string            `json:"accessToken,omitempty"`
+	AccountType     string            `json:"accountType,omitempty"`
+	Annotations     map[string]string `json:"annotations,omitempty"`
+	AvatarURL       string            `json:"avatar_url,omitempty"`
+	Created         string            `json:"created,omitempty"`
+	CreatorID       string            `json:"creatorId,omitempty"`
+	HTMLURL         string            `json:"html_url,omitempty"`
+	Id              string            `json:"id,omitempty"`
+	Labels          map[string]string `json:"labels,omitempty"`
+	Login           string            `json:"login,omitempty"`
+	Name            string            `json:"name,omitempty"`
+	OwnerReferences []OwnerReference  `json:"ownerReferences,omitempty"`
+	Private         *bool             `json:"private,omitempty"`
+	RancherUserID   string            `json:"rancherUserId,omitempty"`
+	Removed         string            `json:"removed,omitempty"`
+	Uuid            string            `json:"uuid,omitempty"`
 }
 type GitAccountCollection struct {
 	types.Collection

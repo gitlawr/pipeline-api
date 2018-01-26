@@ -21,7 +21,7 @@ func Register(pipeline *config.PipelineContext) {
 		logger:                       pipeline.EventLogger,
 	}
 
-	pipelineClient.AddLifecycle("apis-controller", pipelineLifecycle)
+	pipelineClient.AddLifecycle("pipeline-controller", pipelineLifecycle)
 }
 
 type Lifecycle struct {

@@ -27,7 +27,7 @@ func ReadBody(req *http.Request) (map[string]interface{}, error) {
 		return nil, httperror.NewAPIError(httperror.InvalidBodyContent,
 			fmt.Sprintf("Body content longer than %d bytes", reqMaxSize-1))
 	}
-
+	fmt.Println(string(content))
 	data := map[string]interface{}{}
 	if err := json.Unmarshal(content, &data); err != nil {
 		return nil, httperror.NewAPIError(httperror.InvalidBodyContent,

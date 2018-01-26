@@ -11,10 +11,12 @@ type Pipeline struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// Specification of the desired behavior of the the cluster. More info:
 	// https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#spec-and-status
-	Spec PipelineSpec `json:"spec"`
+	//###Spec PipelineSpec `json:"spec"`
+	PipelineSpec
 	// Most recent observed status of the cluster. More info:
 	// https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#spec-and-status
-	Status PipelineStatus `json:"status"`
+	//###Status PipelineStatus `json:"status"`
+	PipelineStatus
 }
 
 type PipelineStatus struct {
@@ -30,7 +32,8 @@ type PipelineStatus struct {
 }
 
 type PipelineSpec struct {
-	IsActivate bool `json:"isActivate" yaml:"isActivate"`
+	Id         string `json:"id,omitempty"`
+	IsActivate bool   `json:"isActivate" yaml:"isActivate"`
 	//user defined environment variables
 	Parameters []string `json:"parameters,omitempty" yaml:"parameters,omitempty"`
 	//for import

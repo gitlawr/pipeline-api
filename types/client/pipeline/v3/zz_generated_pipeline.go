@@ -5,47 +5,57 @@ import (
 )
 
 const (
-	PipelineType                      = "pipeline"
-	PipelineFieldAnnotations          = "annotations"
-	PipelineFieldCreated              = "created"
-	PipelineFieldCreatorID            = "creatorId"
-	PipelineFieldCronTrigger          = "cronTrigger"
-	PipelineFieldIsActivate           = "isActivate"
-	PipelineFieldKeepWorkspace        = "keepWorkspace"
-	PipelineFieldLabels               = "labels"
-	PipelineFieldName                 = "name"
-	PipelineFieldOwnerReferences      = "ownerReferences"
-	PipelineFieldParameters           = "parameters"
-	PipelineFieldRemoved              = "removed"
-	PipelineFieldStages               = "stages"
-	PipelineFieldState                = "state"
-	PipelineFieldStatus               = "status"
-	PipelineFieldTemplates            = "templates"
-	PipelineFieldTransitioning        = "transitioning"
-	PipelineFieldTransitioningMessage = "transitioningMessage"
-	PipelineFieldUuid                 = "uuid"
+	PipelineType                 = "pipeline"
+	PipelineFieldAnnotations     = "annotations"
+	PipelineFieldCommitInfo      = "commitInfo"
+	PipelineFieldCreated         = "created"
+	PipelineFieldCreatorID       = "creatorId"
+	PipelineFieldCronTrigger     = "cronTrigger"
+	PipelineFieldId              = "id"
+	PipelineFieldIsActivate      = "isActivate"
+	PipelineFieldKeepWorkspace   = "keepWorkspace"
+	PipelineFieldLabels          = "labels"
+	PipelineFieldLastRunId       = "lastRunId"
+	PipelineFieldLastRunStatus   = "lastRunStatus"
+	PipelineFieldLastRunTime     = "lastRunTime"
+	PipelineFieldName            = "name"
+	PipelineFieldNextRunTime     = "nextRunTime"
+	PipelineFieldOwnerReferences = "ownerReferences"
+	PipelineFieldParameters      = "parameters"
+	PipelineFieldRemoved         = "removed"
+	PipelineFieldRunCount        = "runCount"
+	PipelineFieldStages          = "stages"
+	PipelineFieldTemplates       = "templates"
+	PipelineFieldUuid            = "uuid"
+	PipelineFieldWebHookId       = "webhookId"
+	PipelineFieldWebHookToken    = "webhookToken"
 )
 
 type Pipeline struct {
 	types.Resource
-	Annotations          map[string]string `json:"annotations,omitempty"`
-	Created              string            `json:"created,omitempty"`
-	CreatorID            string            `json:"creatorId,omitempty"`
-	CronTrigger          *CronTrigger      `json:"cronTrigger,omitempty"`
-	IsActivate           *bool             `json:"isActivate,omitempty"`
-	KeepWorkspace        *bool             `json:"keepWorkspace,omitempty"`
-	Labels               map[string]string `json:"labels,omitempty"`
-	Name                 string            `json:"name,omitempty"`
-	OwnerReferences      []OwnerReference  `json:"ownerReferences,omitempty"`
-	Parameters           []string          `json:"parameters,omitempty"`
-	Removed              string            `json:"removed,omitempty"`
-	Stages               []Stage           `json:"stages,omitempty"`
-	State                string            `json:"state,omitempty"`
-	Status               *PipelineStatus   `json:"status,omitempty"`
-	Templates            map[string]string `json:"templates,omitempty"`
-	Transitioning        string            `json:"transitioning,omitempty"`
-	TransitioningMessage string            `json:"transitioningMessage,omitempty"`
-	Uuid                 string            `json:"uuid,omitempty"`
+	Annotations     map[string]string `json:"annotations,omitempty"`
+	CommitInfo      string            `json:"commitInfo,omitempty"`
+	Created         string            `json:"created,omitempty"`
+	CreatorID       string            `json:"creatorId,omitempty"`
+	CronTrigger     *CronTrigger      `json:"cronTrigger,omitempty"`
+	Id              string            `json:"id,omitempty"`
+	IsActivate      *bool             `json:"isActivate,omitempty"`
+	KeepWorkspace   *bool             `json:"keepWorkspace,omitempty"`
+	Labels          map[string]string `json:"labels,omitempty"`
+	LastRunId       string            `json:"lastRunId,omitempty"`
+	LastRunStatus   string            `json:"lastRunStatus,omitempty"`
+	LastRunTime     *int64            `json:"lastRunTime,omitempty"`
+	Name            string            `json:"name,omitempty"`
+	NextRunTime     *int64            `json:"nextRunTime,omitempty"`
+	OwnerReferences []OwnerReference  `json:"ownerReferences,omitempty"`
+	Parameters      []string          `json:"parameters,omitempty"`
+	Removed         string            `json:"removed,omitempty"`
+	RunCount        *int64            `json:"runCount,omitempty"`
+	Stages          []Stage           `json:"stages,omitempty"`
+	Templates       map[string]string `json:"templates,omitempty"`
+	Uuid            string            `json:"uuid,omitempty"`
+	WebHookId       *int64            `json:"webhookId,omitempty"`
+	WebHookToken    string            `json:"webhookToken,omitempty"`
 }
 type PipelineCollection struct {
 	types.Collection

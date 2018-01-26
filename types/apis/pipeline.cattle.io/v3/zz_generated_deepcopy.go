@@ -137,8 +137,8 @@ func (in *Activity) DeepCopyInto(out *Activity) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
 	in.ObjectMeta.DeepCopyInto(&out.ObjectMeta)
-	in.Spec.DeepCopyInto(&out.Spec)
-	out.Status = in.Status
+	in.ActivitySpec.DeepCopyInto(&out.ActivitySpec)
+	out.ActivityStatus = in.ActivityStatus
 	return
 }
 
@@ -321,8 +321,8 @@ func (in *GitAccount) DeepCopyInto(out *GitAccount) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
 	in.ObjectMeta.DeepCopyInto(&out.ObjectMeta)
-	out.Spec = in.Spec
-	out.Status = in.Status
+	out.GitAccountSpec = in.GitAccountSpec
+	out.GitAccountStatus = in.GitAccountStatus
 	return
 }
 
@@ -541,8 +541,8 @@ func (in *Pipeline) DeepCopyInto(out *Pipeline) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
 	in.ObjectMeta.DeepCopyInto(&out.ObjectMeta)
-	in.Spec.DeepCopyInto(&out.Spec)
-	out.Status = in.Status
+	in.PipelineSpec.DeepCopyInto(&out.PipelineSpec)
+	out.PipelineStatus = in.PipelineStatus
 	return
 }
 

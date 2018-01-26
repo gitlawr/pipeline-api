@@ -11,13 +11,17 @@ type GitAccount struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// Specification of the desired behavior of the the cluster. More info:
 	// https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#spec-and-status
-	Spec GitAccountSpec `json:"spec"`
+	//###Spec GitAccountSpec `json:"spec"`
 	// Most recent observed status of the cluster. More info:
 	// https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#spec-and-status
-	Status GitAccountStatus `json:"status"`
+	//###Status GitAccountStatus `json:"status"`
+	GitAccountSpec
+	GitAccountStatus
 }
 
 type GitAccountSpec struct {
+	Id string `json:"id,omitempty"`
+
 	//private or shared across environment
 	Private       bool   `json:"private,omitempty"`
 	AccountType   string `json:"accountType,omitempty"`
